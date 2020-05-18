@@ -1,0 +1,5 @@
+gTTS
+bs4
+requests
+metar
+configparser
