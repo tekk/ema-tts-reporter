@@ -74,11 +74,11 @@ class temperature(object):
             units = units.upper()
         val = self.value(units)
         if units == "C":
-            return "%.1f C" % val
+            return "%.1f stupňov celzia" % val
         elif units == "F":
-            return "%.1f F" % val
+            return "%.1f stupňov farenheita" % val
         elif units == "K":
-            return "%.1f K" % val
+            return "%.1f stupňov kelvina" % val
 
 
 class pressure(object):
@@ -126,11 +126,11 @@ class pressure(object):
             units = units.upper()
         val = self.value(units)
         if units == "MB":
-            return "%.1f mb" % val
+            return "%.1f milibarov" % val
         elif units == "HPA":
-            return "%.1f hPa" % val
+            return "%.1f hektopaskalov" % val
         elif units == "IN":
-            return "%.2f inches" % val
+            return "%.2f palcov" % val
 
 
 class speed(object):
@@ -193,17 +193,17 @@ class speed(object):
             units = units.upper()
         val = self.value(units)
         if units == "KMH":
-            text = "%.0f km/h" % val
+            text = "%.0f kilometrov za hodinu" % val
         elif units == "KT":
-            text = "%.0f knots" % val
+            text = "%.0f uzlov" % val
         elif units == "MPH":
-            text = "%.0f mph" % val
+            text = "%.0f míľ za hodinu" % val
         elif units == "MPS":
-            text = "%.0f mps" % val
+            text = "%.0f míľ za sekundu" % val
         if self._gtlt == ">":
-            text = "greater than " + text
+            text = "viac ako " + text
         elif self._gtlt == "<":
-            text = "less than " + text
+            text = "menej než " + text
         return text
 
 
@@ -304,19 +304,19 @@ class distance(object):
             else:
                 text = "%.0f" % self.value(units)
         if units == "SM" or units == "MI":
-            text += " miles"
+            text += " míľ"
         elif units == "M":
-            text += " meters"
+            text += " metrov"
         elif units == "KM":
-            text += " km"
+            text += " kilometrov"
         elif units == "FT":
-            text += " feet"
+            text += " stôp"
         elif units == "IN":
-            text += " inches"
+            text += " palcov"
         if self._gtlt == ">":
-            text = "greater than " + text
+            text = "viac ako " + text
         elif self._gtlt == "<":
-            text = "less than " + text
+            text = "menej než " + text
         return text
 
 
@@ -362,7 +362,7 @@ class direction(object):
 
     def string(self):
         """Return a string representation of the numerical direction."""
-        return "%.0f degrees" % self._degrees
+        return "%.0f stupňov" % self._degrees
 
     def compass(self):
         """Return the compass direction, e.g., "N", "ESE", etc.)."""
@@ -445,13 +445,13 @@ class precipitation(object):
             return "Trace"
         text = "%.2f" % self.value(units)
         if units == "CM":
-            text += "cm"
+            text += "centimetrov"
         else:
-            text += "in"
+            text += "palcov"
         if self._gtlt == ">":
-            text = "greater than " + text
+            text = "viac ako " + text
         elif self._gtlt == "<":
-            text = "less than " + text
+            text = "menej než " + text
         return text
 
     def istrace(self):
@@ -480,9 +480,7 @@ class position(object):
         long1 = self.longitude
         lat2 = position2.latitude
         long2 = position2.longitude
-        a = sin(0.5(lat2 - lat1)) + cos(lat1) * cos(lat2) * sin(
-            0.5 * (long2 - long1) ** 2
-        )
+        a = sin(0.5 * (lat2 - lat1)) + cos(lat1) * cos(lat2) * sin(0.5 * (long2 - long1) ** 2)
         c = 2.0 * atan(sqrt(a) * sqrt(1.0 - a))
         d = distance(earth_radius * c, "M")
         return d

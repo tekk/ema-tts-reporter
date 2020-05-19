@@ -207,16 +207,16 @@ def xlate_loc(loc):
 
 # translation of the sky-condition codes into english
 SKY_COVER = {
-    "SKC": "clear",
-    "CLR": "clear",
-    "NSC": "clear",
-    "NCD": "clear",
-    "FEW": "a few ",
-    "SCT": "scattered ",
-    "BKN": "broken ",
-    "OVC": "overcast",
+    "SKC": "jasno",
+    "CLR": "jasno",
+    "NSC": "jasno",
+    "NCD": "jasno",
+    "FEW": "mierne ",
+    "SCT": "ojedinele ",
+    "BKN": "rozptýlené ",
+    "OVC": "zamračené",
     "///": "",
-    "VV": "indefinite ceiling",
+    "VV": "neurčitý strop",
 }
 
 
@@ -241,82 +241,82 @@ CLOUD_TYPE = {
 
 # translation of the present-weather codes into english
 WEATHER_INT = {
-    "-": "light",
-    "+": "heavy",
-    "-VC": "nearby light",
-    "+VC": "nearby heavy",
-    "VC": "nearby",
+    "-": "mierne",
+    "+": "silne",
+    "-VC": "v blízkosti mierne",
+    "+VC": "v blízkosti silne",
+    "VC": "v blízkosti"
 }
 WEATHER_DESC = {
-    "MI": "shallow",
-    "PR": "partial",
-    "BC": "patches of",
-    "DR": "low drifting",
-    "BL": "blowing",
-    "SH": "showers",
-    "TS": "thunderstorm",
-    "FZ": "freezing",
+    "MI": "plytké",
+    "PR": "čiastočné",
+    "BC": "oblasti",
+    "DR": "prízemné",
+    "BL": "fúkanie",
+    "SH": "prehánky",
+    "TS": "búrka",
+    "FZ": "zmrazenie"
 }
 WEATHER_PREC = {
-    "DZ": "drizzle",
-    "RA": "rain",
-    "SN": "snow",
-    "SG": "snow grains",
-    "IC": "ice crystals",
-    "PL": "ice pellets",
-    "GR": "hail",
-    "GS": "snow pellets",
-    "UP": "unknown precipitation",
-    "//": "",
+    "DZ": "mrholenie",
+    "RA": "dážď",
+    "SN": "sneženie",
+    "SG": "snehové zrnká",
+    "IC": "ľadové kryštáliky",
+    "PL": "ľadové pelety",
+    "GR": "krupobitie",
+    "GS": "snehové pelety",
+    "UP": "neznáme",
+    "//": ""
 }
 WEATHER_OBSC = {
-    "BR": "mist",
-    "FG": "fog",
-    "FU": "smoke",
-    "VA": "volcanic ash",
-    "DU": "dust",
-    "SA": "sand",
-    "HZ": "haze",
-    "PY": "spray",
+    "BR": "para",
+    "FG": "hmla",
+    "FU": "dym",
+    "VA": "vulkanický popl",
+    "DU": "prach",
+    "SA": "piesok",
+    "HZ": "zákal",
+    "PY": "sprej"
 }
 WEATHER_OTHER = {
-    "PO": "sand whirls",
-    "SQ": "squalls",
-    "FC": "funnel cloud",
-    "SS": "sandstorm",
-    "DS": "dust storm",
+    "PO": "zvírený piesok",
+    "SQ": "prehánka",
+    "FC": "lievikový mrak",
+    "SS": "piesočná búrka",
+    "DS": "piesočná búrka"
 }
 
-WEATHER_SPECIAL = {"+FC": "tornado"}
+WEATHER_SPECIAL = {"+FC": "tornádo"}
 
-COLOR = {"BLU": "blue", "GRN": "green", "WHT": "white"}
+COLOR = {"BLU": "modré", "GRN": "zelené", "WHT": "biele"}
 
 # translation of various remark codes into English
 PRESSURE_TENDENCY = {
-    "0": "increasing, then decreasing",
-    "1": "increasing more slowly",
-    "2": "increasing",
-    "3": "increasing more quickly",
-    "4": "steady",
-    "5": "decreasing, then increasing",
-    "6": "decreasing more slowly",
-    "7": "decreasing",
-    "8": "decreasing more quickly",
+    "0": "stúpa, potom klesá",
+    "1": "rastie pomalšie",
+    "2": "rastie",
+    "3": "rýchlejšie rastie",
+    "4": "stabilný",
+    "5": "klesá, potom stúpa",
+    "6": "klesá pomalšie",
+    "7": "klesá",
+    "8": "rýchlejšie klesá"
 }
 
-LIGHTNING_FREQUENCY = {"OCNL": "occasional", "FRQ": "frequent", "CONS": "constant"}
+LIGHTNING_FREQUENCY = {"OCNL": "príležitostne", "FRQ": "časté", "CONS": "koštantné"}
 LIGHTNING_TYPE = {
-    "IC": "intracloud",
-    "CC": "cloud-to-cloud",
-    "CG": "cloud-to-ground",
-    "CA": "cloud-to-air",
+    "IC": "medzi mrakmi",
+    "CC": "z mraku na mrak",
+    "CG": "z mraku na zem",
+    "CA": "z mraku do vzduchu"
 }
 
 REPORT_TYPE = {
-    "METAR": "routine report",
-    "SPECI": "special report",
-    "AUTO": "automatic report",
-    "COR": "manually corrected report",
+    "METAR": "rutinná správa",
+    "SPECI": "výnimočná správa",
+    "AUTO": "automatická správa",
+    "COR": "manuálne upravená správa"
 }
 
 
@@ -993,7 +993,7 @@ class Metar(object):
         if d["loc"]:
             text += " " + xlate_loc(d["loc"])
         if d["dir"]:
-            text += " moving %s" % d["dir"]
+            text += " pohybuje sa %s" % d["dir"]
         self._remarks.append(text)
 
     def _handleAutoRemark(self, d):
@@ -1010,7 +1010,7 @@ class Metar(object):
         Parse the 4/ group snowdepth report
         """
         self.snowdepth = distance(float(d["snowdepth"]), "IN")
-        self._remarks.append(" snowdepth %s" % (self.snowdepth,))
+        self._remarks.append(" hĺbka snehu %s" % (self.snowdepth,))
 
     def _handleIceAccretionRemark(self, d):
         """
@@ -1086,61 +1086,50 @@ class Metar(object):
         Return a human-readable version of the decoded report.
         """
         lines = []
-        lines.append("station: %s" % self.station_id)
-        if self.type:
-            lines.append("type: %s" % self.report_type())
-        if self.time:
-            lines.append("time: %s" % self.time.ctime())
         if self.temp:
-            lines.append("temperature: %s" % self.temp.string("C"))
+            lines.append("teplota: %s" % self.temp.string("C"))
         if self.dewpt:
-            lines.append("dew point: %s" % self.dewpt.string("C"))
+            lines.append("rosný bod: %s" % self.dewpt.string("C"))
         if self.wind_speed:
-            lines.append("wind: %s" % self.wind())
+            lines.append("vietor: %s" % self.wind())
         if self.wind_speed_peak:
-            lines.append("peak wind: %s" % self.peak_wind())
+            lines.append("vietor najviac: %s" % self.peak_wind())
         if self.wind_shift_time:
-            lines.append("wind shift: %s" % self.wind_shift())
+            lines.append("smer vetra: %s" % self.wind_shift())
         if self.vis:
-            lines.append("visibility: %s" % self.visibility())
+            lines.append("viditeľnosť: %s" % self.visibility())
         if self.runway:
-            lines.append("visual range: %s" % self.runway_visual_range())
+            lines.append("vizuálny dosah: %s" % self.runway_visual_range())
         if self.press:
-            lines.append("pressure: %s" % self.press.string("mb"))
+            lines.append("tlak: %s" % self.press.string("hPa"))
         if self.weather:
-            lines.append("weather: %s" % self.present_weather())
+            lines.append("počasie: %s" % self.present_weather())
         if self.sky:
-            lines.append("sky: %s" % self.sky_conditions("\n     "))
+            lines.append("obloha: %s" % self.sky_conditions("\n     "))
         if self.press_sea_level:
-            lines.append("sea-level pressure: %s" % self.press_sea_level.string("mb"))
+            lines.append("tlak na úrovni mora: %s" % self.press_sea_level.string("mb"))
         if self.max_temp_6hr:
-            lines.append("6-hour max temp: %s" % str(self.max_temp_6hr))
+            lines.append("6-hodinové maximum: %s" % str(self.max_temp_6hr))
         if self.max_temp_6hr:
-            lines.append("6-hour min temp: %s" % str(self.min_temp_6hr))
+            lines.append("6-hodinové minimum: %s" % str(self.min_temp_6hr))
         if self.max_temp_24hr:
-            lines.append("24-hour max temp: %s" % str(self.max_temp_24hr))
+            lines.append("24-hodinové maximum: %s" % str(self.max_temp_24hr))
         if self.max_temp_24hr:
-            lines.append("24-hour min temp: %s" % str(self.min_temp_24hr))
+            lines.append("24-hodinové minimum: %s" % str(self.min_temp_24hr))
         if self.precip_1hr:
-            lines.append("1-hour precipitation: %s" % str(self.precip_1hr))
+            lines.append("zrážky za poslednú hodinu: %s" % str(self.precip_1hr))
         if self.precip_3hr:
-            lines.append("3-hour precipitation: %s" % str(self.precip_3hr))
+            lines.append("zrážky za posledné dve hodiny: %s" % str(self.precip_3hr))
         if self.precip_6hr:
-            lines.append("6-hour precipitation: %s" % str(self.precip_6hr))
+            lines.append("zrážky za posledných 6 hodín: %s" % str(self.precip_6hr))
         if self.precip_24hr:
-            lines.append("24-hour precipitation: %s" % str(self.precip_24hr))
+            lines.append("zrážky za posledných 24 hodín: %s" % str(self.precip_24hr))
         if self.ice_accretion_1hr:
-            lines.append("1-hour Ice Accretion: %s" % str(self.ice_accretion_1hr))
+            lines.append("1-hodinová akumulácia ľadu: %s" % str(self.ice_accretion_1hr))
         if self.ice_accretion_3hr:
-            lines.append("3-hour Ice Accretion: %s" % str(self.ice_accretion_3hr))
+            lines.append("3-hodinová akumulácia ľadu: %s" % str(self.ice_accretion_3hr))
         if self.ice_accretion_6hr:
-            lines.append("6-hour Ice Accretion: %s" % str(self.ice_accretion_6hr))
-        if self._remarks:
-            lines.append("remarks:")
-            lines.append("- " + self.remarks("\n- "))
-        if self._unparsed_remarks:
-            lines.append("- " + " ".join(self._unparsed_remarks))
-        lines.append("METAR: " + self.code)
+            lines.append("6-hodinová akumulácia ľadu: %s" % str(self.ice_accretion_6hr))
         return "\n".join(lines)
 
     def report_type(self):
@@ -1173,13 +1162,13 @@ class Metar(object):
         if self.wind_speed is None:
             return "missing"
         elif self.wind_speed.value() == 0.0:
-            text = "calm"
+            text = "kľudný"
         else:
             wind_speed = self.wind_speed.string(units)
             if not self.wind_dir:
-                text = "variable at %s" % wind_speed
+                text = "premenlivý %s" % wind_speed
             elif self.wind_dir_from:
-                text = "%s to %s at %s" % (
+                text = "%s do %s pri %s" % (
                     self.wind_dir_from.compass(),
                     self.wind_dir_to.compass(),
                     wind_speed,
@@ -1187,7 +1176,7 @@ class Metar(object):
             else:
                 text = "%s at %s" % (self.wind_dir.compass(), wind_speed)
             if self.wind_gust:
-                text += ", gusting to %s" % self.wind_gust.string(units)
+                text += ", v nárazoch až %s" % self.wind_gust.string(units)
         return text
 
     def peak_wind(self, units="KT"):
@@ -1199,15 +1188,15 @@ class Metar(object):
         if self.wind_speed_peak is None:
             return "missing"
         elif self.wind_speed_peak.value() == 0.0:
-            text = "calm"
+            text = "kľudný"
         else:
             wind_speed = self.wind_speed_peak.string(units)
             if not self.wind_dir_peak:
                 text = wind_speed
             else:
-                text = "%s at %s" % (self.wind_dir_peak.compass(), wind_speed)
+                text = "%s pri %s" % (self.wind_dir_peak.compass(), wind_speed)
                 if self.peak_wind_time is not None:
-                    text += " at %s" % self.peak_wind_time.strftime("%H:%M")
+                    text += " pri %s" % self.peak_wind_time.strftime("%H:%M")
         return text
 
     def wind_shift(self, units="KT"):
@@ -1235,7 +1224,7 @@ class Metar(object):
             text = self.vis.string(units)
         if self.max_vis:
             if self.max_vis_dir:
-                text += "; %s to %s" % (
+                text += "; %s do %s" % (
                     self.max_vis.string(units),
                     self.max_vis_dir.compass(),
                 )
@@ -1252,11 +1241,11 @@ class Metar(object):
             reportunits = unit if units is None else units
             if low != high:
                 lines.append(
-                    ("on runway %s, from %d to %s")
+                    ("na ranveji %s, od %d do %s")
                     % (name, low.value(reportunits), high.string(reportunits))
                 )
             else:
-                lines.append("on runway %s, %s" % (name, low.string(reportunits)))
+                lines.append("na ranveji %s, %s" % (name, low.string(reportunits)))
         return "; ".join(lines)
 
     def present_weather(self):
@@ -1341,9 +1330,9 @@ class Metar(object):
                 # HACK here to account for 'empty' entries with above format
                 label = " ".join(label.strip().split())
                 if cover == "VV":
-                    label += ", vertical visibility to %s" % (str(height),)
+                    label += ", vertikálna viditeľnosť na %s" % (str(height),)
                 else:
-                    label += " at %s" % (str(height),)
+                    label += " pri %s" % (str(height),)
                 text_list.append(label)
         return sep.join(text_list)
 
