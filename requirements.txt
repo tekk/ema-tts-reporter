@@ -2,4 +2,4 @@ gTTS
 bs4
 requests
 configparser
-pygame
+playsound

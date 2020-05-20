@@ -324,22 +324,22 @@ class direction(object):
     """A class representing a compass direction."""
 
     compass_dirs = {
-        "N": 0.0,
-        "NNE": 22.5,
-        "NE": 45.0,
-        "ENE": 67.5,
-        "E": 90.0,
-        "ESE": 112.5,
-        "SE": 135.0,
-        "SSE": 157.5,
-        "S": 180.0,
-        "SSW": 202.5,
-        "SW": 225.0,
-        "WSW": 247.5,
-        "W": 270.0,
-        "WNW": 292.5,
-        "NW": 315.0,
-        "NNW": 337.5,
+        "severný": 0.0,
+        "severo severovýchodný": 22.5,
+        "severovýchodný": 45.0,
+        "východo severovýchodný": 67.5,
+        "východný": 90.0,
+        "východo juhovýchodný": 112.5,
+        "juhovýchodný": 135.0,
+        "juho juhovýchodný": 157.5,
+        "južný": 180.0,
+        "juho juhozápadný": 202.5,
+        "juhozápadný": 225.0,
+        "západo juhozápadný": 247.5,
+        "západný": 270.0,
+        "západo severozápadný": 292.5,
+        "severozápadný": 315.0,
+        "severo severozápadný": 337.5,
     }
 
     def __init__(self, d):
@@ -369,7 +369,7 @@ class direction(object):
         if not self._compass:
             degrees = 22.5 * round(self._degrees / 22.5)
             if degrees == 360.0:
-                self._compass = "N"
+                self._compass = "severný"
             else:
                 for name, d in direction.compass_dirs.items():
                     if d == degrees:

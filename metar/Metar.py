@@ -195,7 +195,7 @@ ICE_ACCRETION_RE = re.compile(
 
 
 # translation of weather location codes
-loc_terms = [("OHD", "overhead"), ("DSNT", "distant"), ("AND", "and"), ("VC", "nearby")]
+loc_terms = [("OHD", "na mieste"), ("DSNT", "vzdialene"), ("AND", "a"), ("VC", "nablízku")]
 
 
 def xlate_loc(loc):
@@ -1160,21 +1160,21 @@ class Metar(object):
         Units may be specified as "MPS", "KT", "KMH", or "MPH".
         """
         if self.wind_speed is None:
-            return "missing"
+            return "chýba"
         elif self.wind_speed.value() == 0.0:
             text = "kľudný"
         else:
             wind_speed = self.wind_speed.string(units)
             if not self.wind_dir:
-                text = "premenlivý %s" % wind_speed
+                text = "premenlivý, rýchlosť %s" % wind_speed
             elif self.wind_dir_from:
-                text = "%s do %s pri %s" % (
+                text = "%s až %s, rýchlosť %s" % (
                     self.wind_dir_from.compass(),
                     self.wind_dir_to.compass(),
                     wind_speed,
                 )
             else:
-                text = "%s at %s" % (self.wind_dir.compass(), wind_speed)
+                text = "%s, rýchlosť %s" % (self.wind_dir.compass(), wind_speed)
             if self.wind_gust:
                 text += ", v nárazoch až %s" % self.wind_gust.string(units)
         return text
@@ -1194,9 +1194,9 @@ class Metar(object):
             if not self.wind_dir_peak:
                 text = wind_speed
             else:
-                text = "%s pri %s" % (self.wind_dir_peak.compass(), wind_speed)
+                text = "%s rýchlosť %s" % (self.wind_dir_peak.compass(), wind_speed)
                 if self.peak_wind_time is not None:
-                    text += " pri %s" % self.peak_wind_time.strftime("%H:%M")
+                    text += " o %s" % self.peak_wind_time.strftime("%H:%M")
         return text
 
     def wind_shift(self, units="KT"):
