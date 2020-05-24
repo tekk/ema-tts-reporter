@@ -1321,7 +1321,7 @@ class Metar(object):
                 text_list.append(SKY_COVER[cover])
             else:
                 if cloud:
-                    what = CLOUD_TYPE.get(cloud, "unknown CLOUD_TYPE of %s" % (cloud,))
+                    what = CLOUD_TYPE.get(cloud, "unknown CLOUD_TYPE of %s" % (cloud))
                 elif SKY_COVER[cover].endswith(" "):
                     what = "mraky"
                 else:
@@ -1330,7 +1330,7 @@ class Metar(object):
                 # HACK here to account for 'empty' entries with above format
                 label = " ".join(label.strip().split())
                 if cover == "VV":
-                    label += ", vertikálna dohľadnosť %s" % (height.string(sel))
+                    label += ", vertikálna dohľadnosť %s" % (height.string('M'))
                 else:
                     label += " vo výške %s" % (height.string('M'))
                 text_list.append(label)
