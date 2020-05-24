@@ -1097,7 +1097,7 @@ class Metar(object):
         if self.wind_shift_time:
             lines.append("smer vetra: %s" % self.wind_shift())
         if self.vis:
-            lines.append("viditeľnosť: %s" % self.visibility())
+            lines.append("dohľadnosť: %s" % self.visibility())
         if self.runway:
             lines.append("vizuálny dosah: %s" % self.runway_visual_range())
         if self.press:
@@ -1107,7 +1107,7 @@ class Metar(object):
         if self.sky:
             lines.append("obloha: %s" % self.sky_conditions("\n     "))
         if self.press_sea_level:
-            lines.append("tlak na úrovni mora: %s" % self.press_sea_level.string("mb"))
+            lines.append("tlak na úrovni mora: %s" % self.press_sea_level.string("hPa"))
         if self.max_temp_6hr:
             lines.append("6-hodinové maximum: %s" % str(self.max_temp_6hr))
         if self.max_temp_6hr:
@@ -1153,7 +1153,7 @@ class Metar(object):
             text += " (%s)" % REPORT_TYPE[self.correction]
         return text
 
-    def wind(self, units="KT"):
+    def wind(self, units="KMH"):
         """
         Return a textual description of the wind conditions.
 
@@ -1179,7 +1179,7 @@ class Metar(object):
                 text += ", v nárazoch až %s" % self.wind_gust.string(units)
         return text
 
-    def peak_wind(self, units="KT"):
+    def peak_wind(self, units="KMH"):
         """
         Return a textual description of the peak wind conditions.
 
@@ -1199,7 +1199,7 @@ class Metar(object):
                     text += " o %s" % self.peak_wind_time.strftime("%H:%M")
         return text
 
-    def wind_shift(self, units="KT"):
+    def wind_shift(self, units="KMH"):
         """
         Return a textual description of the wind shift time
 
@@ -1210,7 +1210,7 @@ class Metar(object):
         else:
             return self.wind_shift_time.strftime("%H:%M")
 
-    def visibility(self, units=None):
+    def visibility(self, units='M'):
         """
         Return a textual description of the visibility.
 
@@ -1232,7 +1232,7 @@ class Metar(object):
                 text += "; %s" % self.max_vis.string(units)
         return text
 
-    def runway_visual_range(self, units=None):
+    def runway_visual_range(self, units='M'):
         """
         Return a textual description of the runway visual range.
         """
@@ -1323,16 +1323,16 @@ class Metar(object):
                 if cloud:
                     what = CLOUD_TYPE.get(cloud, "unknown CLOUD_TYPE of %s" % (cloud,))
                 elif SKY_COVER[cover].endswith(" "):
-                    what = "clouds"
+                    what = "mraky"
                 else:
                     what = ""
                 label = "%s %s" % (SKY_COVER[cover], what)
                 # HACK here to account for 'empty' entries with above format
                 label = " ".join(label.strip().split())
                 if cover == "VV":
-                    label += ", vertikálna viditeľnosť na %s" % (str(height),)
+                    label += ", vertikálna dohľadnosť %s" % (height.string(sel))
                 else:
-                    label += " pri %s" % (str(height),)
+                    label += " vo výške %s" % (height.string('M'))
                 text_list.append(label)
         return sep.join(text_list)
 
