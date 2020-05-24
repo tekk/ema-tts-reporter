@@ -858,16 +858,16 @@ class Metar(object):
         value = float(d["precip"]) / 100.0
         if d["type"] == "6":
             if self.cycle in [3, 9, 15, 21]:
-                self.precip_3hr = precipitation(value, "IN")
+                self.precip_3hr = precipitation(value, "CM")
             else:
                 self.precip_6hr = precipitation(value, "IN")
         else:
-            self.precip_24hr = precipitation(value, "IN")
+            self.precip_24hr = precipitation(value, "CM")
 
     def _handlePrecip1hrRemark(self, d):
         """Parse an hourly precipitation remark group."""
         value = float(d["precip"]) / 100.0
-        self.precip_1hr = precipitation(value, "IN")
+        self.precip_1hr = precipitation(value, "CM")
 
     def _handleTemp1hrRemark(self, d):
         """
@@ -1099,13 +1099,13 @@ class Metar(object):
         if self.vis:
             lines.append("dohľadnosť: %s" % self.visibility())
         if self.runway:
-            lines.append("vizuálny dosah: %s" % self.runway_visual_range())
+            lines.append("dráhová dohľadnosť: %s" % self.runway_visual_range())
         if self.press:
             lines.append("tlak: %s" % self.press.string("hPa"))
         if self.weather:
             lines.append("počasie: %s" % self.present_weather())
         if self.sky:
-            lines.append("obloha: %s" % self.sky_conditions("\n     "))
+            lines.append("oblačnosť: %s" % self.sky_conditions("\n     "))
         if self.press_sea_level:
             lines.append("tlak na úrovni mora: %s" % self.press_sea_level.string("hPa"))
         if self.max_temp_6hr:
@@ -1143,7 +1143,7 @@ class Metar(object):
         else:
             text = self.type + " report"
         if self.cycle:
-            text += ", cycle %d" % self.cycle
+            text += ", cyklus %d" % self.cycle
         if self.mod:
             if self.mod in REPORT_TYPE:
                 text += " (%s)" % REPORT_TYPE[self.mod]
@@ -1176,7 +1176,7 @@ class Metar(object):
             else:
                 text = "%s, rýchlosť %s" % (self.wind_dir.compass(), wind_speed)
             if self.wind_gust:
-                text += ", v nárazoch až %s" % self.wind_gust.string(units)
+                text += ", nárazy %s" % self.wind_gust.string(units)
         return text
 
     def peak_wind(self, units="KMH"):
@@ -1292,7 +1292,7 @@ class Metar(object):
                 else:
                     precip_text = preci
                 if desci == "TS":
-                    text_parts.append("with")
+                    text_parts.append("a")
                 text_parts.append(precip_text)
                 if desci == "SH":
                     text_parts.append(WEATHER_DESC[desci])

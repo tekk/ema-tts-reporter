@@ -445,9 +445,9 @@ class precipitation(object):
             return "Trace"
         text = "%.2f" % self.value(units)
         if units == "CM":
-            text += "centimetrov"
+            text += " centimetrov"
         else:
-            text += "palcov"
+            text += " palcov"
         if self._gtlt == ">":
             text = "viac ako " + text
         elif self._gtlt == "<":
