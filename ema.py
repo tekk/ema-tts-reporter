@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import requests, gtts, gpiozero, configparser, playsound
+import requests, gtts, gpiozero, configparser, os
 from metar import Metar
 
 BASE_URL = "http://tgftp.nws.noaa.gov/data/observations/metar/stations"
@@ -22,7 +22,12 @@ def main():
             tts = gtts.gTTS(text, lang=language)
             tts.save('ema.mp3')
             ptt.on()
-            playsound.playsound('ema.mp3', True)
+            os.system('play -q ema.mp3')
+#            pygame.mixer.init()
+#            pygame.mixer.music.load('ema.mp3')
+#            pygame.mixer.music.play()
+#            while pygame.mixer.music.get_busy() == True:
+#                continue
             ptt.off()
             break
 
