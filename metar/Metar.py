@@ -1325,8 +1325,6 @@ class Metar(object):
             else:
                 if cloud:
                     what = CLOUD_TYPE.get(cloud, "unknown CLOUD_TYPE of %s" % (cloud))
-                elif SKY_COVER[cover].endswith(" "):
-                    what = "mraky"
                 else:
                     what = ""
                 label = "%s %s" % (SKY_COVER[cover], what)
