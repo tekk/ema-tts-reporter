@@ -1,0 +1,147 @@
+- slabá
++ silná
+ACC altocumulus castellanus
+ACFT MSHP nehoda lietadla
+ACSL oblaènos altokumulus lentikular
+AO1 automatizovaná stanica bez diskriminátora zráok
+AO2 automatizovaná stanica s diskriminátorom zráok
+ALP poloha letiska
+APCH priblíenie
+APRNT apparent
+APRX pribline
+ATCT letisková riadiaca vea
+AUTO plne automatické hlásenie
+B zaèal
+BC pásy
+BKN oblaèno
+BL presúvajúca sa hmla
+C stred
+CA blesky medzi oblakmi
+CAVOK jasno
+CB búrková oblaènos
+CBMAM búrková oblaènos
+CC blesky medzi oblaènosou
+CCSL cirrocumulus standing lenticular cloud
+cd kandela
+CG blesky medzi oblaènosou a zemou
+CHI indikátor vıšky oblaènosti
+CHINO sky condition at secondary location not available
+CIG strop
+CLR jasno
+CONS súvislı
+COR oprava predtım rozšíreného pozorovania
+DOC Department of Commerce DOD Department of Defense
+DOT Department of Transportation DR low drifting
+DS piesoèná búrka
+DSIPTG rozptılená
+DSNT vzdialená
+DU rozšírenı prach
+DVR vizuálny doh¾ad dispeèera
+DZ mrholenie
+E vıchod
+FAA Federal Aviation Administration FC funnel cloud
+FEW malá oblaènos
+FG hmla
+FIBI filed but impracticable to transmit
+FIRST first observation after a break in coverage at manual station
+FRQ èastı
+FROPA prechod frontu
+FT stôp
+FU dym
+FZ mrznúci
+FZRANO senzor mrznúceho mrholenie nie je k dispozícii
+G nárazy
+GR krúpy
+GS malé krúpy
+HLSTO krupobitie
+HZ opar
+IC ¾adové kryštály
+ICAO Medzinárodná organizácia pre civilné letectvo
+INCRG stúpajúci
+INTMT prerušovanı
+KT uzlov
+L v¾avo
+LAST naposledy
+LST lokálny štandartnı èas
+LTG blesky
+LWR menej ako
+max maximálne
+M mínus
+MI minimálne
+MOV pohybujúci sa
+MT pohorie
+N sever
+N/A nepouite¾nı
+NCDC National Climatic Data Center
+NE severovıchod
+NOS National Ocean Survey
+NOSPECI iadne špeciálne hlásenia na stanici
+NOTAM Notice to Airmen
+NW severozápad
+NWS National Weather Service
+OCNL príleitostne
+OFCM Office of the Federal Coordinator for Meteorology
+OHD ponad
+OVC zamraæené
+OVR nad
+P viac ako
+PCPN zráky
+PL ¾adové gulièky
+PK WND najvyššia rıchlos vetra
+PNO mnostvo zráok nie je k dispozícii
+PO vírenie prachu alebo piesku
+PRES tlak
+PR èiastoènı
+PRESFR rıchlo klesajúci tlak
+PRESRR rıchlo stúpajúci tlak
+PWINO precipitation identifier sensor not available
+PY postrek
+R vpravo
+RA dáï
+RTD Routine Delayed observation
+RV vykazovaná hodnota
+RVR dráhová doh¾adnos
+RVRNO systém dráhovej doh¾adnosti nie je k dispozícii
+RY vzletová a pristávacia dráha
+S juh
+SA piesok
+SCSL oblaènos stratokumulus lentikular
+SCT polooblaèno
+SE juhovıchod
+SFC povrch
+SG snehové zrná
+SH prehánka
+SKC jasno
+SLP tlak pri hladine mora
+SLPNO tlak pri hladine mora nie je k dispozícii
+SM poèet mí¾
+SN sneh
+SNINCR zintenzívòujúce sa sneenie
+SP snehové gu¾ky
+SPECI an unscheduled report taken when certain criteria have been met
+SQ búrka
+SS piesoèná búrka
+STN stanica
+SW juhovıchod
+TCU búrková oblaènos ve¾kého vertikálneho rozsahu
+TS búrka
+TSNO informácie o búrke nie sú k dispozícii
+TWR vea
+UNKN neznámy
+UP neznáme zráky
+UTC UTC
+V premenlivı
+VA vulkanickı popol
+VC v blízkosti
+VIS doh¾adnos
+VISNO visibility at secondary location not available
+VR vizuálny doh¾ad
+VRB premenlivı
+VV vertikálna doh¾adnos
+W zapad
+WG/SO Pracovná skupina pre povrchové pozorovania
+WMO Svetová meteorologická organizácia
+WND vietor
+WS strih vetra
+WSHFT strih vetra
+Z UTC

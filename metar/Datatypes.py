@@ -74,11 +74,11 @@ class temperature(object):
             units = units.upper()
         val = self.value(units)
         if units == "C":
-            return "%.1f stupňov celzia" % val
+            return "%.0f stupňov celzia" % val
         elif units == "F":
-            return "%.1f stupňov farenheita" % val
+            return "%.0f stupňov farenheita" % val
         elif units == "K":
-            return "%.1f stupňov kelvina" % val
+            return "%.0f stupňov kelvina" % val
 
 
 class pressure(object):
@@ -126,9 +126,9 @@ class pressure(object):
             units = units.upper()
         val = self.value(units)
         if units == "MB":
-            return "%.1f milibarov" % val
+            return "%.0f milibarov" % val
         elif units == "HPA":
-            return "%.1f hektopaskalov" % val
+            return "%.0f hektopaskalov" % val
         elif units == "IN":
             return "%.2f palcov" % val
 
@@ -300,7 +300,7 @@ class distance(object):
                 text = "%d/%d" % (self._num, self._den)
         else:
             if units == "KM":
-                text = "%.1f" % self.value(units)
+                text = "%.0f" % self.value(units)
             else:
                 text = "%.0f" % self.value(units)
         if units == "SM" or units == "MI":
