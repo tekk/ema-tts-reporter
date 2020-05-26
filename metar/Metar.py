@@ -211,10 +211,10 @@ SKY_COVER = {
     "CLR": "jasno",
     "NSC": "jasno",
     "NCD": "jasno",
-    "FEW": "mierne ",
-    "SCT": "ojedinele ",
-    "BKN": "rozptýlené ",
-    "OVC": "zamračené",
+    "FEW": "malá oblačnosť ",
+    "SCT": "polooblačno ",
+    "BKN": "oblačno ",
+    "OVC": "zamračené ",
     "///": "",
     "VV": "neurčitý strop",
 }
@@ -225,63 +225,63 @@ CLOUD_TYPE = {
     "ACC": "altocumulus castellanus",
     "ACSL": "standing lenticular altocumulus",
     "AS": "altostratus",
-    "CB": "cumulonimbus",
-    "CBMAM": "cumulonimbus mammatus",
+    "CB": "búrková oblačnosť",
+    "CBMAM": "búrková oblačnosť",
     "CCSL": "standing lenticular cirrocumulus",
-    "CC": "cirrocumulus",
+    "CC": "blesky medzi oblačnosťou",
     "CI": "cirrus",
     "CS": "cirrostratus",
-    "CU": "cumulus",
+    "CU": "kumulus",
     "NS": "nimbostratus",
-    "SC": "stratocumulus",
+    "SC": "stratokumulus",
     "ST": "stratus",
-    "SCSL": "standing lenticular stratocumulus",
-    "TCU": "towering cumulus",
+    "SCSL": "oblačnosť stratokumulus lentikular",
+    "TCU": "búrková oblačnosť veľkého vertikálneho rozsahu",
 }
 
 # translation of the present-weather codes into english
 WEATHER_INT = {
-    "-": "mierne",
+    "-": "slabo",
     "+": "silne",
-    "-VC": "v blízkosti mierne",
+    "-VC": "v blízkosti slabo",
     "+VC": "v blízkosti silne",
     "VC": "v blízkosti"
 }
 WEATHER_DESC = {
-    "MI": "plytké",
+    "MI": "minimálne",
     "PR": "čiastočné",
     "BC": "oblasti",
     "DR": "prízemné",
-    "BL": "fúkanie",
-    "SH": "prehánky",
+    "BL": "presúvajúca sa hmla",
+    "SH": "prehánka",
     "TS": "búrka",
-    "FZ": "zmrazenie"
+    "FZ": "mrznúci"
 }
 WEATHER_PREC = {
     "DZ": "mrholenie",
     "RA": "dážď",
-    "SN": "sneženie",
-    "SG": "snehové zrnká",
-    "IC": "ľadové kryštáliky",
-    "PL": "ľadové pelety",
-    "GR": "krupobitie",
-    "GS": "snehové pelety",
-    "UP": "neznáme",
+    "SN": "sneh",
+    "SG": "snehové zrná",
+    "IC": "ľadové kryštály",
+    "PL": "ľadové guličky",
+    "GR": "krúpy",
+    "GS": "malé krúpy",
+    "UP": "neznáme zrážky",
     "//": ""
 }
 WEATHER_OBSC = {
     "BR": "para",
     "FG": "hmla",
     "FU": "dym",
-    "VA": "vulkanický popl",
-    "DU": "prach",
+    "VA": "vulkanický popol",
+    "DU": "rozšírený prach",
     "SA": "piesok",
-    "HZ": "zákal",
-    "PY": "sprej"
+    "HZ": "opar",
+    "PY": "postrek"
 }
 WEATHER_OTHER = {
-    "PO": "zvírený piesok",
-    "SQ": "prehánka",
+    "PO": "vírenie prachu alebo piesku",
+    "SQ": "búrka",
     "FC": "lievikový mrak",
     "SS": "piesočná búrka",
     "DS": "piesočná búrka"
@@ -304,12 +304,12 @@ PRESSURE_TENDENCY = {
     "8": "rýchlejšie klesá"
 }
 
-LIGHTNING_FREQUENCY = {"OCNL": "príležitostne", "FRQ": "časté", "CONS": "koštantné"}
+LIGHTNING_FREQUENCY = {"OCNL": "príležitostne", "FRQ": "časté", "CONS": "súvislé"}
 LIGHTNING_TYPE = {
-    "IC": "medzi mrakmi",
-    "CC": "z mraku na mrak",
-    "CG": "z mraku na zem",
-    "CA": "z mraku do vzduchu"
+    "IC": "medzi oblačnosťami",
+    "CC": "blesky medzi oblačnosťou",
+    "CG": "blesky medzi oblačnosťou a zemou",
+    "CA": "blesky medzi oblakmi"
 }
 
 REPORT_TYPE = {
@@ -771,7 +771,7 @@ class Metar(object):
                     else:
                         press = press / 10 + 900
                     self.press = pressure(press, "MB")
-                    self._remarks.append("sea-level pressure %.1fhPa" % press)
+                    self._remarks.append("sea-level pressure %.0fhPa" % press)
                 else:
                     self.press = pressure(press, "MB")
             elif press > 2500:
@@ -916,7 +916,7 @@ class Metar(object):
         """
         value = float(d["press"]) / 10.0
         descrip = PRESSURE_TENDENCY[d["tend"]]
-        self._remarks.append("3-hr pressure change %.1fhPa, %s" % (value, descrip))
+        self._remarks.append("3-hr pressure change %.0fhPa, %s" % (value, descrip))
 
     def _handlePeakWindRemark(self, d):
         """
@@ -924,7 +924,7 @@ class Metar(object):
         """
         peak_dir = int(d["dir"])
         peak_speed = int(d["speed"])
-        self.wind_speed_peak = speed(peak_speed, "KT")
+        self.wind_speed_peak = speed(peak_speed, "KMH")
         self.wind_dir_peak = direction(peak_dir)
         peak_min = int(d["min"])
         if d["hour"]:
@@ -940,7 +940,7 @@ class Metar(object):
             else:
                 self.peak_wind_time -= datetime.timedelta(hours=1)
         self._remarks.append(
-            "peak wind %dkt from %d degrees at %d:%02d"
+            "peak wind %d km/h from %d degrees at %d:%02d"
             % (peak_speed, peak_dir, peak_hour, peak_min)
         )
 
@@ -1086,6 +1086,9 @@ class Metar(object):
         Return a human-readable version of the decoded report.
         """
         lines = []
+        lines.append("stanica: %s" % self.station_id)
+        if self.type:
+            lines.append("čas pozorovania: %s UTC" % self.time.strftime('%H:%M'))
         if self.temp:
             lines.append("teplota: %s" % self.temp.string("C"))
         if self.dewpt:
