@@ -1,0 +1,3 @@
+# run ema on every first minute of an hour
+59 * * * * cd /opt/ema-tts-reporter && sudo python3 ominutu.py >> /var/log/ema.log
+0 * * * * cd /opt/ema-tts-reporter && sudo python3 ema.py >> /var/log/ema.log
