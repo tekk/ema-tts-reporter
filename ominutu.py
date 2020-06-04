@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import requests, gtts, gpiozero, configparser, os, time
+import gpiozero, configparser, os, time
 from metar import Metar
 
 config = configparser.ConfigParser()
@@ -10,7 +10,6 @@ def main():
     language = config['DEFAULT']['Language']
     port = config['DEFAULT']['PTT-Pin']
     ptt = gpiozero.LED(port)
-    ptt.off()
     ptt.on()
     time.sleep(0.25)
     os.system('play -q ominutu.mp3')
