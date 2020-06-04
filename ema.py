@@ -23,6 +23,7 @@ def main():
             tts.save('ema.mp3')
             ptt.on()
             time.sleep(0.25)
+            os.system('play -q roger.wav')
             os.system('play -q ema.mp3')
             ptt.off()
             break
