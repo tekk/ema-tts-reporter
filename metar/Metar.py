@@ -209,7 +209,7 @@ def xlate_loc(loc):
 SKY_COVER = {
     "SKC": "jasno",
     "CLR": "jasno",
-    "NSC": "jasno",
+    "NSC": "žiadna význačná oblačnosť",
     "NCD": "jasno",
     "FEW": "malá oblačnosť ",
     "SCT": "polooblačno ",
