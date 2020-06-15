@@ -5,3 +5,6 @@ Language: SLOVAK
 
 This is Raspberry Pi project for reporting automatic TTS weather messages from METAR info.
 You can use English by deleting `metar` directory and adding `python-metar` with pip and change language in `ema.ini` to `en`
+
+## Example
+https://www.youtube.com/watch?v=lJpKAsCE5To
