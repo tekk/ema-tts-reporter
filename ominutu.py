@@ -11,7 +11,7 @@ def main():
     port = config['DEFAULT']['PTT-Pin']
     ptt = gpiozero.LED(port)
     ptt.on()
-    time.sleep(0.25)
+    time.sleep(0.5)
     os.system('play -q roger.wav')
     os.system('play -q ominutu.mp3')
     ptt.off()
