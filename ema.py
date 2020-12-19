@@ -3,6 +3,8 @@ import requests, gtts, configparser, gpiozero, os, time
 from metar import Metar
 from google.cloud import texttospeech
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/opt/ema-tts-reporter/credentials.json"
+
 BASE_URL = "http://tgftp.nws.noaa.gov/data/observations/metar/stations"
 config = configparser.ConfigParser()
 
